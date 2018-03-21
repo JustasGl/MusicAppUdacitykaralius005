@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">MusicAppUdacity karalius005</string>
     <string name="title_activity_player">player</string>
+    <string name="filename">File name:</string>
+    <string name="duration">Duration:</string>
+    <string name="filelocation">File Location:</string>
+    <string name="artist">Artist:</string>
+    <string name="next">next</string>
+    <string name="pause">pause</string>
+    <string name="previous">previous</string>
 </resources>

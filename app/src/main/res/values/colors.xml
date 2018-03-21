@@ -7,4 +7,5 @@
     <color name="buttons">#1976d2</color>
     <color name="background">#448aff</color>
     <color name="transblack">#73000000</color>
+    <color name="seperator">#000000</color>
 </resources>

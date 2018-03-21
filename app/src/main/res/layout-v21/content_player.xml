@@ -4,70 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
-    >
+    android:background="@color/colorPrimaryLight">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorAccent"
         android:elevation="@dimen/toolbarelevation" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
         android:layout_margin="8dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/toolbar">
+        android:orientation="vertical">
+
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/title"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
+
         <TextView
+            android:id="@+id/artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.7"
-            android:textAlignment="center"
-            android:id="@+id/artist"/>
+            android:textAlignment="center" />
     </LinearLayout>
+
     <ImageView
+        android:id="@+id/pic"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:id="@+id/pic"
-        android:layout_above="@+id/seek"/>
+        android:layout_above="@+id/seek" />
+
     <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/seek"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/navigation"
-        android:id="@+id/seek"/>
+        android:layout_margin="8dp" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/navigation"
+        style="@style/matchnwrap"
         android:layout_alignParentBottom="true"
         android:background="@color/background"
-        android:id="@+id/navigation"
         android:padding="8dp">
         <ImageView
-            android:layout_width="0dp"
             android:id="@+id/back"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
+            style="@style/buttons"
             android:src="@drawable/ic_action_name"
-            android:layout_weight="1"/>
+            android:contentDescription="@string/previous" />
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_pause"
             android:id="@+id/pause"
-            android:background="?attr/selectableItemBackground"
-            android:layout_weight="1"/>
+            style="@style/buttons"
+            android:src="@drawable/ic_pause"
+            android:contentDescription="@string/pause" />
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_next"
-            android:background="?attr/selectableItemBackground"
             android:id="@+id/forward"
-            android:layout_weight="1"/>
+            style="@style/buttons"
+            android:src="@drawable/ic_next"
+            android:contentDescription="@string/next" />
     </LinearLayout>
 </RelativeLayout>

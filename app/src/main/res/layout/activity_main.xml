@@ -2,67 +2,57 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.android.musicappudacitykaralius005.MainActivity"
-    android:background="@color/colorPrimaryLight">
+    style="@style/matchnmatch"
+    android:background="@color/colorPrimaryLight"
+    tools:context="com.example.android.musicappudacitykaralius005.MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:id="@+id/titles"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleheight"
         android:background="@color/background"
         android:orientation="vertical">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/track"
+        style="@style/matchnwrap"
         android:maxLines="1"
         android:padding="@dimen/averagepadding"
-        android:textSize="@dimen/titlesize"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="@dimen/titlesize"/>
         <TextView
+            android:id="@+id/artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/artist"
             android:alpha="0.7"
-            android:textSize="@dimen/midsize"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textSize="@dimen/midsize"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/navigation"
+        style="@style/matchnwrap"
         android:layout_alignParentBottom="true"
         android:background="@color/background"
-        android:id="@+id/navigation"
         android:padding="8dp">
         <ImageView
-            android:layout_width="0dp"
             android:id="@+id/back"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
+            style="@style/buttons"
             android:src="@drawable/ic_action_name"
-            android:layout_weight="1"/>
+            android:contentDescription="@string/previous" />
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_pause"
             android:id="@+id/pause"
-            android:background="?attr/selectableItemBackground"
-            android:layout_weight="1"/>
+            style="@style/buttons"
+            android:src="@drawable/ic_pause"
+            android:contentDescription="@string/pause" />
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_next"
-            android:background="?attr/selectableItemBackground"
             android:id="@+id/forward"
-            android:layout_weight="1"/>
+            style="@style/buttons"
+            android:src="@drawable/ic_next"
+            android:contentDescription="@string/next" />
     </LinearLayout>
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/listview"
-        android:layout_below="@+id/titles"
+        style="@style/matchnwrap"
         android:layout_above="@+id/navigation"
+        android:layout_below="@+id/titles"
         />
 </RelativeLayout>

@@ -2,86 +2,77 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.android.musicappudacitykaralius005.moreinfo"
-    android:background="@color/transblack">
+    style="@style/matchnmatch"
+    android:background="@color/transblack"
+    tools:context="com.example.android.musicappudacitykaralius005.moreinfo">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="8dp">
+        style="@style/matchnmatch"
+        android:layout_margin="@dimen/margininfo"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/matchnwrap"
             android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="File name:"/>
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/matchnwrap"
+                android:text="@string/filename" />
+
+            <TextView
                 android:id="@+id/filename"
-                android:textSize="@dimen/midsize"/>
+               style="@style/infovalues"/>
+
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
+               style="@style/seperator" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/matchnwrap"
             android:orientation="vertical">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Artist:"/>
+                style="@style/matchnwrap"
+                android:text="@string/artist" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/artist"
-                android:textSize="@dimen/midsize"/>
+               style="@style/infovalues" />
+
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
+                style="@style/seperator" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/matchnwrap"
             android:orientation="vertical">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="File Location:"/>
+                style="@style/matchnwrap"
+                android:text="@string/filelocation" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/filelocation"
-                android:textSize="@dimen/midsize"/>
+                style="@style/infovalues"/>
+
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
+                style="@style/seperator" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/matchnwrap"
             android:orientation="vertical">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Duration:"/>
+                style="@style/matchnwrap"
+                android:text="@string/duration" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/duration"
-                android:textSize="@dimen/midsize"/>
+                style="@style/infovalues" />
+
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
+                style="@style/seperator" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

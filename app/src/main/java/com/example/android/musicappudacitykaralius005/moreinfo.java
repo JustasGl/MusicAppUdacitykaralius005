@@ -10,6 +10,7 @@ public class moreinfo extends AppCompatActivity {
     static TextView title;
     static TextView location;
     static TextView duration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +22,8 @@ public class moreinfo extends AppCompatActivity {
 
         setText();
     }
-    public static void setText()
-    {
+
+    public static void setText() {
         artist.setText(MainActivity.arrayList.get(MainActivity.current));
         title.setText(MainActivity.arrayTitles.get(MainActivity.current));
         location.setText(MainActivity.arrayLocations.get(MainActivity.current));

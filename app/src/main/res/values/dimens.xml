@@ -5,4 +5,12 @@
     <dimen name="titlesize">20sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="toolbarelevation">4dp</dimen>
+    <dimen name="titleheight">50dp</dimen>
+    <dimen name="widthofweighted">0dp</dimen>
+    <dimen name="heightofseperator">1dp</dimen>
+    <dimen name="margininfo">8dp</dimen>
+    <dimen name="imgeheihgt">400dp</dimen>
+    <dimen name="marginofseekbar">8dp</dimen>
+    <dimen name="marginofbuttons">8dp</dimen>
+    <dimen name="heightofpic">200dp</dimen>
 </resources>
