@@ -20,11 +20,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".player"
+            android:name=".Player"
             android:label="@string/title_activity_player"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".moreinfo"></activity>
+        <activity android:name=".MoreInfo"/>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class moreinfo extends AppCompatActivity {
+public class MoreInfo extends AppCompatActivity {
     static TextView artist;
     static TextView title;
     static TextView location;
@@ -24,9 +24,11 @@ public class moreinfo extends AppCompatActivity {
     }
 
     public static void setText() {
-        artist.setText(MainActivity.arrayList.get(MainActivity.current));
-        title.setText(MainActivity.arrayTitles.get(MainActivity.current));
+        artist.setText(MainActivity.SongInfo.get(MainActivity.current).getmArtist());
+        title.setText(MainActivity.SongInfo.get(MainActivity.current).getmTitle());
+        if(MainActivity.IsThereMusic)
         location.setText(MainActivity.arrayLocations.get(MainActivity.current));
-        duration.setText(MainActivity.arrayDuration.get(MainActivity.current));
+        else location.setText("Built in aplication");
+        duration.setText(MainActivity.SongInfo.get(MainActivity.current).getmDuration());
     }
 }

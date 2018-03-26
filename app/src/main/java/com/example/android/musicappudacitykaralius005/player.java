@@ -21,13 +21,16 @@ import android.widget.TextView;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
-public class player extends AppCompatActivity {
-    static String titl;
-    static String artis;
-    static TextView title;
+public class Player extends AppCompatActivity {
+    static String titl;//title of the song
+    static String artis;//artist name
+    static TextView title;//Title TextView
     static TextView artist;
-    ImageView pause, back, forward, pic;
-    static SeekBar sek;
+    ImageView pause,//pause button
+            back,//Back button
+            forward,//Forward button
+            pic;//Cover Image
+    static SeekBar sek;//Seekbar for song progess
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +43,8 @@ public class player extends AppCompatActivity {
         toolbar.setTitle(titl);
         pic = findViewById(R.id.pic);
         settingpic();
-        titl = getIntent().getStringExtra("titles");
-        artis = getIntent().getStringExtra("artist");
+        titl = getIntent().getStringExtra(getString(R.string.titles));
+        artis = getIntent().getStringExtra(getString(R.string.artistKey));
         setText();
         back = findViewById(R.id.back);
         forward = findViewById(R.id.forward);
@@ -52,12 +55,10 @@ public class player extends AppCompatActivity {
             pause.setImageResource(R.drawable.ic_pause);
         settingmax();
         final Handler mHandler = new Handler();
-        player.this.runOnUiThread(new Runnable() {
+        Player.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (MainActivity.mp != null) {
-
-                    Log.i("itsallfolks", MainActivity.mp.getCurrentPosition() + "");
                     sek.setProgress(MainActivity.mp.getCurrentPosition());
                 }
                 mHandler.postDelayed(this, 1000);
@@ -132,20 +133,11 @@ public class player extends AppCompatActivity {
         return true;
     }
 
-    private void result(int i) {
-        double mseconds = Double.parseDouble(MainActivity.arrayDurationints.get(MainActivity.current));
-        double a = i;
-        a = a / 100;
-        mseconds = mseconds * a;
-        Log.i("Aftereverythis", mseconds + "");
-        MainActivity.seek((int) mseconds);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.info) {
-            Intent intent = new Intent(player.this, moreinfo.class);
+            Intent intent = new Intent(Player.this, MoreInfo.class);
             startActivity(intent);
             return true;
         }
@@ -154,22 +146,23 @@ public class player extends AppCompatActivity {
     }
 
     void settingpic() {
-        Log.i("Picturescovers", MainActivity.images.get(MainActivity.current) + "");
-        Bitmap btm = getAlbumart(MainActivity.images.get(MainActivity.current));
-        pic.setImageBitmap(btm);
+        if(MainActivity.IsThereMusic) {
+            Bitmap btm = getAlbumart(MainActivity.images.get(MainActivity.current));
+            pic.setImageBitmap(btm);
+        }
+        else pic.setImageResource(R.drawable.udacity);
     }
 
     void settingmax() {
         sek = findViewById(R.id.seek);
         sek.setMax(MainActivity.mp.getDuration());
-        Log.i("GetDuration", "" + MainActivity.mp.getDuration());
     }
 
     public Bitmap getAlbumart(Integer album_id) {
         Bitmap bm = null;
         try {
             final Uri sArtworkUri = Uri
-                    .parse("content://media/external/audio/albumart");
+                    .parse(getString(R.string.bitmapURI));
 
             Uri uri = ContentUris.withAppendedId(sArtworkUri, album_id);
 

@@ -4,11 +4,12 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
-import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -24,19 +25,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISION_REQUEST = 1;
     static int times;
-    static ArrayList<String> arrayList;
-    static ArrayList<String> arrayTitles;
     static ArrayList<String> arrayLocations;
-    static ArrayList<String> arrayDuration;
-    static ArrayList<String> arrayDurationints;
+    SoundObject soundObject;
+    static ArrayList<SoundObject> SongInfo;
     static ArrayList<Integer> images;
+    static ArrayList <Integer> sounds;
     static MediaPlayer mp;
+    static boolean IsThereMusic = true; //Checks is there music in your phone
     static int current = 0;
     static boolean ispaused = true;
     static TextView artist;
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static public void previousSong() throws IOException {
+        if(IsThereMusic)
         if (current == 0)
             current = arrayLocations.size() - 1;
         else
@@ -69,7 +72,18 @@ public class MainActivity extends AppCompatActivity {
         if (releaseMediaPlayer())
             mp = new MediaPlayer();
         if (mp != null) {
-            mp.setDataSource(arrayLocations.get(current));
+            if(IsThereMusic) {
+                if (mp.isPlaying()) {
+                    mp.pause();
+                }
+                mp.selectTrack(current);
+            }
+            else {
+                if (mp.isPlaying()) {
+                    mp.pause();
+                }
+                mp.selectTrack(current);
+            }
             mp.prepare();
             mp.start();
             setText();
@@ -77,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static public void nextsong() throws IOException {
+        if(IsThereMusic)
         if (current < arrayLocations.size() - 1)
             current++;
         else
@@ -84,7 +99,23 @@ public class MainActivity extends AppCompatActivity {
         if (releaseMediaPlayer())
             mp = new MediaPlayer();
         if (mp != null) {
+            if (IsThereMusic)
             mp.setDataSource(arrayLocations.get(current));
+            else {
+            mp.setDataSource(String.valueOf(sounds.get(current)));
+            }
+            mp.prepare();
+            mp.start();
+            setText();
+        }
+        else {
+            if (current < arrayLocations.size() - 1)
+                current++;
+            else
+            {
+                current = 0;
+            }
+            mp.selectTrack(sounds.get(current));
             mp.prepare();
             mp.start();
             setText();
@@ -95,11 +126,11 @@ public class MainActivity extends AppCompatActivity {
     static public void setText() {
         pause.setImageResource(R.drawable.ic_pause);
         times++;
-        track.setText(arrayTitles.get(current));
-        artist.setText(arrayList.get(current));
+        track.setText(SongInfo.get(current).getmTitle());
+        artist.setText(SongInfo.get(current).getmArtist());
         ispaused = false;
-        player.titl = arrayTitles.get(current);
-        player.artis = arrayList.get(current);
+        Player.titl = SongInfo.get(current).getmTitle();
+        Player.artis = SongInfo.get(current).getmArtist();
     }
 
     static private boolean releaseMediaPlayer() {
@@ -109,10 +140,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
-    }
-
-    static public void seek(int mseconds) {
-        mp.seekTo(mseconds);
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,18 +162,88 @@ public class MainActivity extends AppCompatActivity {
         } else {
             dostuff();
         }
+        mp = new MediaPlayer();
+        if(arrayLocations.size()==0 || arrayLocations.isEmpty())
+        {
+            sounds = new ArrayList<>();
+            IsThereMusic = false;
+            sounds.add(R.raw.a50_cent_ayo_technologytwonottyremix);
+            soundObject = new SoundObject(getString(R.string.Song0Artist),getString(R.string.song0),getString(R.string.song0duration),getString(R.string.Song0DurationInMili));
+            SongInfo.add(soundObject);
+
+            sounds.add(R.raw.arctic_monkeys_do_i_wanna_know_official_video);
+            soundObject = new SoundObject(getString(R.string.Song1Artist),getString(R.string.Song1),getString(R.string.Song1Duration),getString(R.string.Song1DurationInMili));
+            SongInfo.add(soundObject);
+
+            sounds.add(R.raw.in_my_mind_dynoro_remix);
+            soundObject = new SoundObject(getString(R.string.Song2Artist),getString(R.string.Song2),getString(R.string.Song2Duration),getString(R.string.Song2DurationInMili));
+            SongInfo.add(soundObject);
+
+            sounds.add(R.raw.jovani_feat_beissoul_einius_adopted_child_of_love);
+            soundObject = new SoundObject(getString(R.string.Song3Artist),getString(R.string.Song3),getString(R.string.Song3Duration),getString(R.string.Song3DurationInMili));
+            SongInfo.add(soundObject);
+
+            sounds.add(R.raw.lika_morgan_feel_the_same_edxs_dubai_skyline_remix);
+            soundObject = new SoundObject(getString(R.string.Song4Artist),getString(R.string.Song4),getString(R.string.Song4Duration),getString(R.string.Song4DurationInMili));
+            SongInfo.add(soundObject);
+
+            sounds.add(R.raw.liu_step_head_feat_vano);
+            soundObject = new SoundObject(getString(R.string.Song5Artist),getString(R.string.Song5),getString(R.string.Song5Duration),getString(R.string.Song5DurationInMili));
+            SongInfo.add(soundObject);
+
+            sounds.add(R.raw.lucky_luke_m_a_d_e);
+            soundObject = new SoundObject(getString(R.string.Song6Artist),getString(R.string.Song6),getString(R.string.Song6Duration),getString(R.string.Song6DurationInMili));
+            SongInfo.add(soundObject);
+
+            sounds.add(R.raw.martin_garrix_david_guetta_so_far_away_feat_jamie_scott_romy_rya_official_video);
+            soundObject = new SoundObject(getString(R.string.Song7Artist),getString(R.string.Song7),getString(R.string.Song7Duration),getString(R.string.Song7DurationInMili));
+            SongInfo.add(soundObject);
+
+            ArrayList<String>Titles = new ArrayList<>();
+            for(int i=0; i<SongInfo.size(); i++)
+            {
+                Titles.add(SongInfo.get(i).getmTitle());
+            }
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Titles);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                    try {
+                        mp.reset();
+                        if (times > 0)
+                            if (releaseMediaPlayer())
+                                mp = new MediaPlayer();
+                        mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                        current = pos;
+                        restore = current;
+                        setText();
+                        AssetFileDescriptor afd = getResources().openRawResourceFd(sounds.get(pos));
+
+                        mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
+                    } catch (Exception e) {
+                    Log.e("","",e);
+                    e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
     public void dostuff() {
         listView = findViewById(R.id.listview);
-        arrayList = new ArrayList<>();
+        SongInfo = new ArrayList<>();
         arrayLocations = new ArrayList<>();
-        arrayTitles = new ArrayList<>();
-        arrayDuration = new ArrayList<>();
-        arrayDurationints = new ArrayList<>();
-        images = new ArrayList<Integer>();
+
+        images = new ArrayList<>();
         getMusic();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayTitles);
+        ArrayList<String>Titles = new ArrayList<>();
+        for(int i=0; i<SongInfo.size(); i++)
+        {
+            Titles.add(SongInfo.get(i).getmTitle());
+        }
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Titles);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -157,14 +254,16 @@ public class MainActivity extends AppCompatActivity {
                         if (releaseMediaPlayer())
                             mp = new MediaPlayer();
                     mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    if(IsThereMusic)
                     mp.setDataSource(arrayLocations.get(pos));
+                    else
+                        mp.selectTrack(sounds.get(current));
                     mp.prepare();
                     mp.start();
                     current = pos;
                     restore = current;
                     setText();
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "exeption catched" + e, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -177,11 +276,10 @@ public class MainActivity extends AppCompatActivity {
         titles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, player.class);
-                intent.putExtra("artist", arrayList.get(current));
-                intent.putExtra("titles", arrayTitles.get(current));
-                startActivity(intent);
+                Intent PlayerActivity = new Intent(MainActivity.this, Player.class);
+                PlayerActivity.putExtra(getString(R.string.artistKey),SongInfo.get(current).getmArtist());
+                PlayerActivity.putExtra(getString(R.string.titles),SongInfo.get(current).getmTitle());
+                startActivity(PlayerActivity);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -218,12 +316,11 @@ public class MainActivity extends AppCompatActivity {
             int img = (songCursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ID));
 
             do {
-                arrayList.add(songCursor.getString(songArtist));
-                arrayTitles.add(songCursor.getString(songTitle));
                 arrayLocations.add(songCursor.getString(songLocation));
                 String duration = convertDuration(Integer.parseInt(songCursor.getString(du)));
-                arrayDuration.add(duration);
-                arrayDurationints.add(songCursor.getString(du));
+                soundObject = new SoundObject(songCursor.getString(songArtist),songCursor.getString(songTitle),duration,songCursor.getString(du));
+                SongInfo.add(soundObject);
+
                 images.add(img);
             } while (songCursor.moveToNext());
         }
@@ -241,20 +338,20 @@ public class MainActivity extends AppCompatActivity {
         long remaining_minutes = (duration - (hours * 3600000)) / 60000;
         String minutes = String.valueOf(remaining_minutes);
         if (minutes.equals(0)) {
-            minutes = "00";
+            minutes = getString(R.string.zeros);
         }
         long remaining_seconds = (duration - (hours * 3600000) - (remaining_minutes * 60000));
         String seconds = String.valueOf(remaining_seconds);
         if (seconds.length() < 2) {
-            seconds = "00";
+            seconds = getString(R.string.zeros);
         } else {
             seconds = seconds.substring(0, 2);
         }
 
         if (hours > 0) {
-            out = hours + ":" + minutes + ":" + seconds;
+            out = hours + getString(R.string.seperator) + minutes + getString(R.string.seperator) + seconds;
         } else {
-            out = minutes + ":" + seconds;
+            out = minutes + getString(R.string.seperator) + seconds;
         }
 
         return out;
