@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     style="@style/matchnmatch">
 
     <LinearLayout
-       style="@style/matchnmatch"
+        style="@style/matchnmatch"
         android:background="@color/colorPrimaryLight"
         android:orientation="vertical">
 
@@ -49,21 +47,24 @@
             style="@style/matchnwrap"
             android:background="@color/background"
             android:padding="@dimen/marginofbuttons">
+
             <ImageView
                 android:id="@+id/back"
                 style="@style/buttons"
-                android:src="@drawable/ic_action_name"
-                android:contentDescription="@string/previous" />
+                android:contentDescription="@string/previous"
+                android:src="@drawable/ic_action_name" />
+
             <ImageView
                 android:id="@+id/pause"
                 style="@style/buttons"
-                android:src="@drawable/ic_pause"
-                android:contentDescription="@string/pause" />
+                android:contentDescription="@string/pause"
+                android:src="@drawable/ic_pause" />
+
             <ImageView
                 android:id="@+id/forward"
                 style="@style/buttons"
-                android:src="@drawable/ic_next"
-                android:contentDescription="@string/next" />
+                android:contentDescription="@string/next"
+                android:src="@drawable/ic_next" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -18,18 +18,22 @@
         <item name="android:layout_weight">1</item>
         <item name=" android:background">?attr/selectableItemBackground</item>
     </style>
+
     <style name="seperator">
         <item name=" android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/heightofseperator</item>
         <item name="android:background">@color/seperator</item>
     </style>
+
     <style name="matchnwrap">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="infovalues" parent="matchnwrap">
         <item name="android:textSize">@dimen/midsize</item>
     </style>
+
     <style name="matchnmatch">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

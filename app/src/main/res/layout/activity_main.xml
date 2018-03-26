@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/matchnmatch"
     android:background="@color/colorPrimaryLight"
@@ -12,47 +11,53 @@
         android:layout_height="@dimen/titleheight"
         android:background="@color/background"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/track"
-        style="@style/matchnwrap"
-        android:maxLines="1"
-        android:padding="@dimen/averagepadding"
-        android:textAlignment="center"
-        android:textSize="@dimen/titlesize"/>
+
+        <TextView
+            android:id="@+id/track"
+            style="@style/matchnwrap"
+            android:maxLines="1"
+            android:padding="@dimen/averagepadding"
+            android:textAlignment="center"
+            android:textSize="@dimen/titlesize" />
+
         <TextView
             android:id="@+id/artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.7"
             android:textAlignment="center"
-            android:textSize="@dimen/midsize"/>
+            android:textSize="@dimen/midsize" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/navigation"
         style="@style/matchnwrap"
         android:layout_alignParentBottom="true"
         android:background="@color/background"
         android:padding="8dp">
+
         <ImageView
             android:id="@+id/back"
             style="@style/buttons"
-            android:src="@drawable/ic_action_name"
-            android:contentDescription="@string/previous" />
+            android:contentDescription="@string/previous"
+            android:src="@drawable/ic_action_name" />
+
         <ImageView
             android:id="@+id/pause"
             style="@style/buttons"
-            android:src="@drawable/ic_pause"
-            android:contentDescription="@string/pause" />
+            android:contentDescription="@string/pause"
+            android:src="@drawable/ic_pause" />
+
         <ImageView
             android:id="@+id/forward"
             style="@style/buttons"
-            android:src="@drawable/ic_next"
-            android:contentDescription="@string/next" />
+            android:contentDescription="@string/next"
+            android:src="@drawable/ic_next" />
     </LinearLayout>
+
     <ListView
         android:id="@+id/listview"
         style="@style/matchnwrap"
         android:layout_above="@+id/navigation"
-        android:layout_below="@+id/titles"
-        />
+        android:layout_below="@+id/titles" />
 </RelativeLayout>

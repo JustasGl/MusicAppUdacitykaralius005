@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/matchnmatch"
     android:background="@color/transblack"
@@ -21,10 +20,9 @@
 
             <TextView
                 android:id="@+id/filename"
-               style="@style/infovalues"/>
+                style="@style/infovalues" />
 
-            <View
-               style="@style/seperator" />
+            <View style="@style/seperator" />
         </LinearLayout>
 
         <LinearLayout
@@ -37,10 +35,9 @@
 
             <TextView
                 android:id="@+id/artist"
-               style="@style/infovalues" />
+                style="@style/infovalues" />
 
-            <View
-                style="@style/seperator" />
+            <View style="@style/seperator" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,10 +50,9 @@
 
             <TextView
                 android:id="@+id/filelocation"
-                style="@style/infovalues"/>
+                style="@style/infovalues" />
 
-            <View
-                style="@style/seperator" />
+            <View style="@style/seperator" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,8 +67,7 @@
                 android:id="@+id/duration"
                 style="@style/infovalues" />
 
-            <View
-                style="@style/seperator" />
+            <View style="@style/seperator" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
