@@ -57,7 +57,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             if (mp == null)
                 mp = new MediaPlayer();
-            mp.start();
+            mp.setOnPreparedListener(new OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                }
+            });
             ispaused = false;
             pause.setImageResource(R.drawable.ic_pause);
         }
@@ -65,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
     static public void previousSong() throws IOException {
         if(IsThereMusic)
-        if (current == 0)
-            current = arrayLocations.size() - 1;
-        else
-            current--;
+            if (current == 0)
+                current = arrayLocations.size() - 1;
+            else
+                current--;
         if (releaseMediaPlayer())
             mp = new MediaPlayer();
         if (mp != null) {
@@ -76,36 +81,59 @@ public class MainActivity extends AppCompatActivity {
                 if (mp.isPlaying()) {
                     mp.pause();
                 }
-                mp.selectTrack(current);
+                mp.prepare();
+                mp.setOnPreparedListener(new OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        mediaPlayer.selectTrack(current);
+                        mediaPlayer.start();
+                    }
+                });
             }
             else {
-                if (mp.isPlaying()) {
-                    mp.pause();
-                }
-                mp.selectTrack(current);
+
+                mp.prepare();
+                mp.setOnPreparedListener(new OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        mediaPlayer.selectTrack(current);
+                        mediaPlayer.start();
+                    }
+                });
+
             }
             mp.prepare();
-            mp.start();
+            mp.setOnPreparedListener(new OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                }
+            });
             setText();
         }
     }
 
     static public void nextsong() throws IOException {
         if(IsThereMusic)
-        if (current < arrayLocations.size() - 1)
-            current++;
-        else
-            current = 0;
+            if (current < arrayLocations.size() - 1)
+                current++;
+            else
+                current = 0;
         if (releaseMediaPlayer())
             mp = new MediaPlayer();
         if (mp != null) {
             if (IsThereMusic)
-            mp.setDataSource(arrayLocations.get(current));
+                mp.setDataSource(arrayLocations.get(current));
             else {
-            mp.setDataSource(String.valueOf(sounds.get(current)));
+                mp.setDataSource(String.valueOf(sounds.get(current)));
             }
             mp.prepare();
-            mp.start();
+            mp.setOnPreparedListener(new OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                }
+            });
             setText();
         }
         else {
@@ -117,7 +145,12 @@ public class MainActivity extends AppCompatActivity {
             }
             mp.selectTrack(sounds.get(current));
             mp.prepare();
-            mp.start();
+            mp.setOnPreparedListener(new OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                }
+            });
             setText();
         }
 
@@ -210,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                    Toast.makeText(getApplicationContext(), "ListItem clicked",Toast.LENGTH_SHORT).show();
                     try {
                         mp.reset();
                         if (times > 0)
@@ -219,12 +253,17 @@ public class MainActivity extends AppCompatActivity {
                         current = pos;
                         restore = current;
                         setText();
-                        AssetFileDescriptor afd = getResources().openRawResourceFd(sounds.get(pos));
-
-                        mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getDeclaredLength());
+                      mp.setOnPreparedListener(new OnPreparedListener() {
+                          @Override
+                          public void onPrepared(MediaPlayer mediaPlayer) {
+                              mediaPlayer.selectTrack(sounds.get(current));
+                              mediaPlayer.start();
+                              Toast.makeText(getApplicationContext(), "OnPrepared called",Toast.LENGTH_SHORT).show();
+                          }
+                      });
                     } catch (Exception e) {
-                    Log.e("","",e);
-                    e.printStackTrace();
+                        Log.e("","",e);
+                        e.printStackTrace();
                     }
                 }
             });
@@ -248,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+
                 try {
                     mp.reset();
                     if (times > 0)
@@ -255,11 +295,17 @@ public class MainActivity extends AppCompatActivity {
                             mp = new MediaPlayer();
                     mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     if(IsThereMusic)
-                    mp.setDataSource(arrayLocations.get(pos));
+                        mp.setDataSource(arrayLocations.get(pos));
                     else
                         mp.selectTrack(sounds.get(current));
                     mp.prepare();
-                    mp.start();
+                    mp.setOnPreparedListener(new OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mediaPlayer) {
+                            mediaPlayer.start();
+
+                        }
+                    });
                     current = pos;
                     restore = current;
                     setText();
