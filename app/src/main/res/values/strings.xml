@@ -30,7 +30,7 @@
     <string name="Song4">Lika Morgan - Feel The Same EDX\'S Dubai Skyline Remix</string>
     <string name="Song4Duration">3.33</string>
     <string name="Song4DurationInMili">199800</string>
-    <string name="Song5Artist">Lika Morgan</string>
+    <string name="Song5Artist">Liu</string>
     <string name="Song5">Liu - Step A Head</string>
     <string name="Song5Duration">3.18</string>
     <string name="Song5DurationInMili">190800</string>
@@ -41,8 +41,9 @@
     <string name="Song7DurationInMili">181800</string>
     <string name="Song7Duration">3.03</string>
     <string name="Song7"><![CDATA[Martin Garrix & David Guetta feat. Jamie Scott - So Far Away]]></string>
-    <string name="Song7Artist">Lucky Luke</string>
+    <string name="Song7Artist">Martin Garrix &amp; David Guetta</string>
     <string name="zeros">00</string>
     <string name="seperator">:</string>
     <string name="bitmapURI">content://media/external/audio/albumart</string>
+    <string name="BuiltIn">Built in aplication</string>
 </resources>

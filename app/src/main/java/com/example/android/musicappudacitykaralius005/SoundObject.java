@@ -6,18 +6,20 @@ package com.example.android.musicappudacitykaralius005;
 
 public class SoundObject {
     String mArtist,
-    mTitle,
-    mDuration,
-    mDurationInMili;
-    public SoundObject(String artist, String title, String duration, String durationInMili)
-    {
+            mTitle,
+            mDuration,
+            mDurationInMili;
+
+    public SoundObject(String artist, String title, String duration, String durationInMili) {
         mArtist = artist;
-        mTitle= title;
+        mTitle = title;
         mDuration = duration;
         mDurationInMili = durationInMili;
     }
 
-    public String getmArtist (){return mArtist;}
+    public String getmArtist() {
+        return mArtist;
+    }
 
     public String getmDuration() {
         return mDuration;

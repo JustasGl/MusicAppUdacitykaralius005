@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,11 +25,17 @@ public class Player extends AppCompatActivity {
     static String artis;//artist name
     static TextView title;//Title TextView
     static TextView artist;
+    static SeekBar sek;//Seekbar for song progess
     ImageView pause,//pause button
             back,//Back button
             forward,//Forward button
             pic;//Cover Image
-    static SeekBar sek;//Seekbar for song progess
+
+    static public void setText() {
+        title.setText(titl);
+        artist.setText(artis);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,7 @@ public class Player extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if (MainActivity.mp != null && b) {
                     MainActivity.mp.seekTo(i);
+                    MainActivity.length = i;
                 }
             }
 
@@ -86,10 +92,11 @@ public class Player extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    MainActivity.nextsong();
+                    MainActivity.nextsong(getApplicationContext());
                     setText();
                     settingmax();
                     settingpic();
+                    pause.setImageResource(R.drawable.ic_pause);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -110,8 +117,9 @@ public class Player extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    MainActivity.previousSong();
+                    MainActivity.previousSong(getApplicationContext());
                     setText();
+                    pause.setImageResource(R.drawable.ic_pause);
                     settingmax();
                     settingpic();
                 } catch (IOException e) {
@@ -119,12 +127,6 @@ public class Player extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    static public void setText() {
-        title.setText(titl);
-        artist.setText(artis);
-
     }
 
     @Override
@@ -146,11 +148,10 @@ public class Player extends AppCompatActivity {
     }
 
     void settingpic() {
-        if(MainActivity.IsThereMusic) {
+        if (MainActivity.IsThereMusic) {
             Bitmap btm = getAlbumart(MainActivity.images.get(MainActivity.current));
             pic.setImageBitmap(btm);
-        }
-        else pic.setImageResource(R.drawable.udacity);
+        } else pic.setImageResource(R.drawable.udacity);
     }
 
     void settingmax() {

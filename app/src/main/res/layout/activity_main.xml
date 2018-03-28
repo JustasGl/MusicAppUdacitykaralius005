@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/track"
+            android:id="@+id/TrackName"
             style="@style/matchnwrap"
             android:maxLines="1"
             android:padding="@dimen/averagepadding"
@@ -21,7 +21,7 @@
             android:textSize="@dimen/titlesize" />
 
         <TextView
-            android:id="@+id/artist"
+            android:id="@+id/Artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.7"
@@ -37,19 +37,19 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/back"
+            android:id="@+id/BackButton"
             style="@style/buttons"
             android:contentDescription="@string/previous"
             android:src="@drawable/ic_action_name" />
 
         <ImageView
-            android:id="@+id/pause"
+            android:id="@+id/PauseButton"
             style="@style/buttons"
             android:contentDescription="@string/pause"
             android:src="@drawable/ic_pause" />
 
         <ImageView
-            android:id="@+id/forward"
+            android:id="@+id/ForwardButton"
             style="@style/buttons"
             android:contentDescription="@string/next"
             android:src="@drawable/ic_next" />

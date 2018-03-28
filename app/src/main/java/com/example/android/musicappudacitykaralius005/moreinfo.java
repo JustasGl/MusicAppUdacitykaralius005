@@ -1,8 +1,7 @@
 package com.example.android.musicappudacitykaralius005;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.SeekBar;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class MoreInfo extends AppCompatActivity {
@@ -10,6 +9,15 @@ public class MoreInfo extends AppCompatActivity {
     static TextView title;
     static TextView location;
     static TextView duration;
+
+    public static void setText() {
+        artist.setText(MainActivity.SongInfo.get(MainActivity.current).getmArtist());
+        title.setText(MainActivity.SongInfo.get(MainActivity.current).getmTitle());
+        if (MainActivity.IsThereMusic)
+            location.setText(MainActivity.arrayLocations.get(MainActivity.current));
+        else location.setText(R.string.BuiltIn);
+        duration.setText(MainActivity.SongInfo.get(MainActivity.current).getmDuration());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +29,5 @@ public class MoreInfo extends AppCompatActivity {
         duration = findViewById(R.id.duration);
 
         setText();
-    }
-
-    public static void setText() {
-        artist.setText(MainActivity.SongInfo.get(MainActivity.current).getmArtist());
-        title.setText(MainActivity.SongInfo.get(MainActivity.current).getmTitle());
-        if(MainActivity.IsThereMusic)
-        location.setText(MainActivity.arrayLocations.get(MainActivity.current));
-        else location.setText("Built in aplication");
-        duration.setText(MainActivity.SongInfo.get(MainActivity.current).getmDuration());
     }
 }
