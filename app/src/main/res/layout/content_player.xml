@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/matchnmatch"
-    android:background="@color/colorPrimaryLight">
+    android:background="@color/colorPrimaryLight"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -12,7 +13,6 @@
 
     <LinearLayout
         style="@style/matchnwrap"
-        android:layout_below="@+id/toolbar"
         android:layout_margin="8dp"
         android:orientation="vertical">
 
@@ -26,26 +26,23 @@
             style="@style/matchnwrap"
             android:alpha="0.7"
             android:textAlignment="center" />
+
+        <ImageView
+            android:id="@+id/pic"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/imgeheihgt"
+            android:contentDescription="@string/cover" />
+
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/seek"
+            style="@style/matchnwrap"
+            android:layout_margin="@dimen/marginofseekbar" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/pic"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/imgeheihgt"
-        android:layout_above="@+id/seek" />
-
-    <android.support.v7.widget.AppCompatSeekBar
-        android:id="@+id/seek"
-        style="@style/matchnwrap"
-        android:layout_above="@+id/navigation"
-        android:layout_margin="@dimen/marginofseekbar" />
 
     <LinearLayout
         android:id="@+id/navigation"
         style="@style/matchnwrap"
-        android:layout_alignParentBottom="true"
-        android:background="@color/background"
-        android:padding="8dp">
+        android:background="@color/background">
 
         <ImageView
             android:id="@+id/back"
@@ -65,4 +62,4 @@
             android:contentDescription="@string/next"
             android:src="@drawable/ic_next" />
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

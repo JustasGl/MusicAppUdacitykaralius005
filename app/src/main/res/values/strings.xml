@@ -46,4 +46,6 @@
     <string name="seperator">:</string>
     <string name="bitmapURI">content://media/external/audio/albumart</string>
     <string name="BuiltIn">Built in aplication</string>
+    <string name="info">info</string>
+    <string name="cover">Cover</string>
 </resources>

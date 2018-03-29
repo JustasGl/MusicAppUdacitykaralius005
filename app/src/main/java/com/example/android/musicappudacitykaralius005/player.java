@@ -41,11 +41,11 @@ public class Player extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_player);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        android.support.v7.widget.Toolbar myToolbar =findViewById(R.id.toolbar);
+        myToolbar.setTitle(MainActivity.SongInfo.get(MainActivity.current).getmTitle());
+        setSupportActionBar(myToolbar);
         title = findViewById(R.id.title);
         artist = findViewById(R.id.artist);
-        toolbar.setTitle(titl);
         pic = findViewById(R.id.pic);
         settingpic();
         titl = getIntent().getStringExtra(getString(R.string.titles));
@@ -134,6 +134,14 @@ public class Player extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       title.setText(MainActivity.SongInfo.get(MainActivity.current).getmTitle());
+       artist.setText(MainActivity.SongInfo.get(MainActivity.current).getmArtist());
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

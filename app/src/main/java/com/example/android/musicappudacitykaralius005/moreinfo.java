@@ -3,6 +3,7 @@ package com.example.android.musicappudacitykaralius005;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 public class MoreInfo extends AppCompatActivity {
     static TextView artist;
@@ -27,7 +28,9 @@ public class MoreInfo extends AppCompatActivity {
         title = findViewById(R.id.filename);
         location = findViewById(R.id.filelocation);
         duration = findViewById(R.id.duration);
-
+        android.support.v7.widget.Toolbar myToolbar =findViewById(R.id.toolbar);
+        myToolbar.setTitle(MainActivity.SongInfo.get(MainActivity.current).getmTitle());
+        setSupportActionBar(myToolbar);
         setText();
     }
 }

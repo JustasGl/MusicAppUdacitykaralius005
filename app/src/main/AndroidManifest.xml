@@ -21,10 +21,10 @@
         </activity>
         <activity
             android:name=".Player"
-            android:label="@string/title_activity_player"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".MoreInfo"/>
+            android:parentActivityName=".MainActivity" />
+
+        <activity android:name=".MoreInfo"
+            android:parentActivityName=".Player"/>
     </application>
 
 </manifest>

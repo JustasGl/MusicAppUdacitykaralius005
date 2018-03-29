@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             forward;
     SoundObject soundObject;
     ListView listView;
-    ArrayAdapter<String> adapter;
+    CustomAdapter adapter;
     LinearLayout titles;
 
     public static void pause() {
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < SongInfo.size(); i++) {
                 Titles.add(SongInfo.get(i).getmTitle());
             }
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Titles);
+            CustomAdapter adapteris = new CustomAdapter(MainActivity.this, SongInfo);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < SongInfo.size(); i++) {
             Titles.add(SongInfo.get(i).getmTitle());
         }
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Titles);
+        adapter = new CustomAdapter(this, SongInfo);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

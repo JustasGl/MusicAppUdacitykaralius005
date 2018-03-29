@@ -13,4 +13,5 @@
     <dimen name="marginofseekbar">8dp</dimen>
     <dimen name="marginofbuttons">8dp</dimen>
     <dimen name="heightofpic">200dp</dimen>
+    <dimen name="sizeOfListText">16sp</dimen>
 </resources>
